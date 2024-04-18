@@ -1,4 +1,6 @@
-package com.github.ioloolo.onlinejudge.common.payload.response;
+package com.github.ioloolo.onlinejudge.common.exception;
+
+import com.github.ioloolo.onlinejudge.common.payload.response.Response;
 
 import lombok.Data;
 
