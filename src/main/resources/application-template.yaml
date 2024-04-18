@@ -11,6 +11,10 @@ spring:
 springdoc:
   paths-to-match:
     - "/api/**"
+  swagger-ui:
+    default-models-expand-depth: -1
+    tags-sorter: alpha
+  writer-with-order-by-keys: true
 
 app:
   security:
