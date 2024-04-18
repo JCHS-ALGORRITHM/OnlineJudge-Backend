@@ -10,13 +10,15 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Getter
+@NoArgsConstructor
 @AllArgsConstructor
 public class ChangeInfoRequest {
 
 	@NotBlank(groups = NotBlankGroup.class, message = "아이디는 필수 입력값입니다.")
-	private final String username;
+	private String username;
 
 	@NotBlank(groups = NotBlankGroup.class, message = "이름은 필수 입력값입니다.")
 	@Size(groups = LengthGroup.class, min = 2, max = 4, message = "이름은 2자 이상, 4자 이하로 입력해주세요.")

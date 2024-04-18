@@ -31,6 +31,10 @@ public class TagAdminService {
 			throw Exceptions.TAG_NOT_EXISTS.exception();
 		}
 
+		if (repository.existsByTag(rawNewTag)) {
+			throw Exceptions.TAG_EXISTS.exception();
+		}
+
 		Tag tag = repository.findById(tagId).orElseThrow();
 		tag.setTag(rawNewTag);
 		repository.save(tag);
