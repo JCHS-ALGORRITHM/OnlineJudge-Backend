@@ -12,9 +12,9 @@ public enum Exceptions {
 	USER_NOT_EXISTS("존재하지 않는 유저입니다."),
 	PASSWORD_WRONG("잘못된 비밀번호입니다."),
 
-	PROBLEM_NOT_FOUND("존재하지 않는 문제입니다."),
-
-	JUDGE_IMAGE_NOT_FOUND("채점 컨테이너 이미지가 존재하지 않습니다."),
+	// s
+	TAG_EXISTS("이미 존재하는 태그입니다."),
+	TAG_NOT_EXISTS("존재하지 않는 태그입니다."),
 	;
 
 	private final String message;
