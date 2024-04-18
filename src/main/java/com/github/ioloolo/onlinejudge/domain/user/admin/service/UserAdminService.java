@@ -27,7 +27,7 @@ public class UserAdminService {
 	public void changePassword(String username, String newPassword) throws Exception {
 
 		if (!repository.existsByUsername(username)) {
-			throw Exceptions.USER_NOT_FOUND.exception();
+			throw Exceptions.USER_NOT_EXISTS.exception();
 		}
 
 		User user = repository.findByUsername(username).orElseThrow();
@@ -38,7 +38,7 @@ public class UserAdminService {
 	public void changeInfo(String username, String realName, int schoolGrade, int schoolClass, int schoolId) throws Exception {
 
 		if (!repository.existsByUsername(username)) {
-			throw Exceptions.USER_NOT_FOUND.exception();
+			throw Exceptions.USER_NOT_EXISTS.exception();
 		}
 
 		User user = repository.findByUsername(username).orElseThrow();
@@ -49,7 +49,7 @@ public class UserAdminService {
 					.orElseThrow();
 
 			if (!user2.getId().equals(user.getId())) {
-				throw Exceptions.ALREADY_REGISTERED_INFO.exception();
+				throw Exceptions.USERINFO_EXISTS.exception();
 			}
 		}
 

@@ -44,7 +44,7 @@ public class UserService {
 	public UserInfoDto getUser(String username) throws Exception {
 
 		if (!repository.existsByUsername(username)) {
-			throw Exceptions.USER_NOT_FOUND.exception();
+			throw Exceptions.USER_NOT_EXISTS.exception();
 		}
 
 		User user = repository.findByUsername(username).orElseThrow();
@@ -62,11 +62,11 @@ public class UserService {
 	public void register(String username, String password, String realName, int schoolGrade, int schoolClass, int schoolId) throws Exception {
 
 		if (repository.existsByUsername(username)) {
-			throw Exceptions.ALREADY_REGISTERED_ID.exception();
+			throw Exceptions.USERNAME_EXISTS.exception();
 		}
 
 		if (repository.existsBySchoolGradeAndSchoolClassAndSchoolId(schoolGrade, schoolClass, schoolId)) {
-			throw Exceptions.ALREADY_REGISTERED_INFO.exception();
+			throw Exceptions.USERINFO_EXISTS.exception();
 		}
 
 		User user = User.builder()
@@ -97,7 +97,7 @@ public class UserService {
 		User user = securityUtil.getUser();
 
 		if (!passwordEncoder.matches(password, user.getPassword())) {
-			throw Exceptions.USER_PASSWORD_WRONG.exception();
+			throw Exceptions.PASSWORD_WRONG.exception();
 		}
 
 		user.setPassword(passwordEncoder.encode(newPassword));
@@ -116,7 +116,7 @@ public class UserService {
 			).orElseThrow();
 
 			if (!user2.getId().equals(user.getId())) {
-				throw Exceptions.ALREADY_REGISTERED_INFO.exception();
+				throw Exceptions.USERINFO_EXISTS.exception();
 			}
 		}
 
