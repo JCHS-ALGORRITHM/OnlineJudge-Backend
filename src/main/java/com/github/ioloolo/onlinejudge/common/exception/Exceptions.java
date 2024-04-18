@@ -12,7 +12,7 @@ public enum Exceptions {
 	USER_NOT_EXISTS("존재하지 않는 유저입니다."),
 	PASSWORD_WRONG("잘못된 비밀번호입니다."),
 
-	// s
+	// Tag Controller
 	TAG_EXISTS("이미 존재하는 태그입니다."),
 	TAG_NOT_EXISTS("존재하지 않는 태그입니다."),
 	;
