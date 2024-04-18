@@ -1,8 +1,9 @@
 package com.github.ioloolo.onlinejudge.common.security;
 
+import static org.springframework.security.web.util.matcher.AntPathRequestMatcher.antMatcher;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
@@ -14,6 +15,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+
+import com.github.ioloolo.onlinejudge.domain.user.entity.User;
 
 import lombok.RequiredArgsConstructor;
 
@@ -52,6 +55,8 @@ public class WebSecurityConfig {
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
+		String ADMIN = User.Role.ROLE_ADMIN.raw();
+
 		return http
 			.cors(AbstractHttpConfigurer::disable)
 			.csrf(AbstractHttpConfigurer::disable)
@@ -64,17 +69,14 @@ public class WebSecurityConfig {
 			.authenticationProvider(authenticationProvider())
 
 			.authorizeHttpRequests(request -> {
-				request.requestMatchers("/swagger-ui/**").permitAll();
-				request.requestMatchers("/swagger-resources/**").permitAll();
-				request.requestMatchers("/v3/api-docs/**").permitAll();
+				request.requestMatchers( "/api/user/auth").anonymous();
 
-				request.requestMatchers(HttpMethod.POST, "/api/user/auth").anonymous();
-				request.requestMatchers(HttpMethod.PUT, "/api/user/auth").anonymous();
-				request.requestMatchers(HttpMethod.POST, "/api/user/admin/users").hasRole("ADMIN");
-				request.requestMatchers(HttpMethod.PATCH, "/api/user/admin/password").hasRole("ADMIN");
-				request.requestMatchers(HttpMethod.PATCH, "/api/user/admin/info").hasRole("ADMIN");
+				request.requestMatchers(antMatcher("/api/**/admin/**")).hasRole(ADMIN);
+				request.requestMatchers(antMatcher("/api/**/admin")).hasRole(ADMIN);
 
-				request.anyRequest().authenticated();
+				request.requestMatchers(antMatcher("/api/**")).authenticated();
+
+				request.anyRequest().permitAll();
 			})
 
 			.build();
