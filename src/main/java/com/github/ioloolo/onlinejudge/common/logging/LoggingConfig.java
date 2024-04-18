@@ -1,5 +1,7 @@
 package com.github.ioloolo.onlinejudge.common.logging;
 
+import java.util.function.BiConsumer;
+
 import org.springframework.context.annotation.Configuration;
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Component;
@@ -43,9 +45,9 @@ public class LoggingConfig implements WebMvcConfigurer {
 
 		@Override
 		public void afterCompletion(@NonNull HttpServletRequest request,
-							   @NonNull HttpServletResponse response,
-							   @NonNull Object handler,
-							   @Nullable Exception ex) {
+									@NonNull HttpServletResponse response,
+									@NonNull Object handler,
+									@Nullable Exception ex) {
 
 			if (!request.getRequestURI().startsWith("/api")) {
 				return;
@@ -53,12 +55,22 @@ public class LoggingConfig implements WebMvcConfigurer {
 
 			long elapsedTime = System.currentTimeMillis() - (long) request.getAttribute(START_TIME);
 
-			log.info("[Response] {} {} {} {} {}ms",
-					 request.getMethod(),
-					 request.getRequestURI(),
-					 request.getRemoteAddr(),
-					 response.getStatus(),
-					 elapsedTime);
+			int firstStatus = response.getStatus() / 100;
+
+			BiConsumer<String, Object[]> logging = firstStatus == 5 ? log::error :
+												   firstStatus == 4 ? log::warn :
+												   log::info;
+
+			logging.accept(
+					"[Response] {} {} {} {} {}ms",
+					new Object[] {
+							request.getMethod(),
+							request.getRequestURI(),
+							request.getRemoteAddr(),
+							response.getStatus(),
+							elapsedTime
+					}
+			);
 		}
 	}
 }

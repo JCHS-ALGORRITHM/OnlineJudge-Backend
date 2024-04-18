@@ -6,11 +6,16 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @ControllerAdvice
 public class ErrorHandler {
 
 	@ExceptionHandler(Throwable.class)
 	public ResponseEntity<ErrorResponse> handleException(Exception e) {
+
+		log.error(e.getMessage());
 
 		return ResponseEntity.internalServerError().body(new ErrorResponse(e));
 	}
