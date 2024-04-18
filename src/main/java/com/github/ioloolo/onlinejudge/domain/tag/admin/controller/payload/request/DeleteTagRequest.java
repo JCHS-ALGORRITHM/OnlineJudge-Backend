@@ -1,4 +1,4 @@
-package com.github.ioloolo.onlinejudge.domain.lecture.admin.controller.payload.request;
+package com.github.ioloolo.onlinejudge.domain.tag.admin.controller.payload.request;
 
 import com.github.ioloolo.onlinejudge.common.validation.group.NotBlankGroup;
 

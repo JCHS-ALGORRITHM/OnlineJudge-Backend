@@ -1,4 +1,4 @@
-package com.github.ioloolo.onlinejudge.domain.lecture.entity;
+package com.github.ioloolo.onlinejudge.domain.tag.entity;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;

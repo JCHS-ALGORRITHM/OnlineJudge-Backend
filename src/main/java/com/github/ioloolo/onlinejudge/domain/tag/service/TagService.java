@@ -1,11 +1,11 @@
-package com.github.ioloolo.onlinejudge.domain.lecture.service;
+package com.github.ioloolo.onlinejudge.domain.tag.service;
 
 import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.github.ioloolo.onlinejudge.domain.lecture.entity.Tag;
-import com.github.ioloolo.onlinejudge.domain.lecture.repository.TagRepository;
+import com.github.ioloolo.onlinejudge.domain.tag.entity.Tag;
+import com.github.ioloolo.onlinejudge.domain.tag.repository.TagRepository;
 
 import lombok.RequiredArgsConstructor;
 

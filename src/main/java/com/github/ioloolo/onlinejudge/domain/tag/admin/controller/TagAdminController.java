@@ -1,4 +1,4 @@
-package com.github.ioloolo.onlinejudge.domain.lecture.admin.controller;
+package com.github.ioloolo.onlinejudge.domain.tag.admin.controller;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -11,10 +11,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.github.ioloolo.onlinejudge.common.payload.response.SuccessResponse;
 import com.github.ioloolo.onlinejudge.common.validation.OrderChecks;
-import com.github.ioloolo.onlinejudge.domain.lecture.admin.controller.payload.request.ChangeTagRequest;
-import com.github.ioloolo.onlinejudge.domain.lecture.admin.controller.payload.request.CreateTagRequest;
-import com.github.ioloolo.onlinejudge.domain.lecture.admin.controller.payload.request.DeleteTagRequest;
-import com.github.ioloolo.onlinejudge.domain.lecture.admin.service.TagAdminService;
+import com.github.ioloolo.onlinejudge.domain.tag.admin.controller.payload.request.ChangeTagRequest;
+import com.github.ioloolo.onlinejudge.domain.tag.admin.controller.payload.request.CreateTagRequest;
+import com.github.ioloolo.onlinejudge.domain.tag.admin.controller.payload.request.DeleteTagRequest;
+import com.github.ioloolo.onlinejudge.domain.tag.admin.service.TagAdminService;
 
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
