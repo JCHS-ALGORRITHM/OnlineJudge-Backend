@@ -41,7 +41,9 @@ public class UserAdminController {
 
 	@Operation(summary = "다른 유저 비밀번호 변경")
 	@PatchMapping("/password")
-	public ResponseEntity<SuccessResponse> changePassword(@Validated(OrderChecks.class) @RequestBody ChangePasswordRequest request) throws Exception {
+	public ResponseEntity<SuccessResponse> changePassword(
+			@Validated(OrderChecks.class) @RequestBody ChangePasswordRequest request
+	) throws Exception {
 
 		String username = request.getUsername();
 		String newPassword = request.getNewPassword();
@@ -53,7 +55,9 @@ public class UserAdminController {
 
 	@Operation(summary = "다른 유저 정보 변경")
 	@PatchMapping("/info")
-	public ResponseEntity<SuccessResponse> changeInfo(@Validated(OrderChecks.class) @RequestBody ChangeInfoRequest request) throws Exception {
+	public ResponseEntity<SuccessResponse> changeInfo(
+			@Validated(OrderChecks.class) @RequestBody ChangeInfoRequest request
+	) throws Exception {
 
 		String username = request.getUsername();
 		String realName = request.getRealName();

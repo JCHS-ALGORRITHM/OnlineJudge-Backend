@@ -44,7 +44,9 @@ public class UserController {
 
 	@Operation(summary = "유저 데이터 가져오기")
 	@PostMapping
-	public ResponseEntity<Response<UserInfoDto>> getUser(@Validated(OrderChecks.class) @RequestBody GetUserInfoRequest request) throws Exception {
+	public ResponseEntity<Response<UserInfoDto>> getUser(
+			@Validated(OrderChecks.class) @RequestBody GetUserInfoRequest request
+	) throws Exception {
 
 		String username = request.getUsername();
 
@@ -55,7 +57,9 @@ public class UserController {
 
 	@Operation(summary = "회원가입")
 	@PutMapping("/auth")
-	public ResponseEntity<SuccessResponse> register(@Validated(OrderChecks.class) @RequestBody RegisterRequest request) throws Exception {
+	public ResponseEntity<SuccessResponse> register(
+			@Validated(OrderChecks.class) @RequestBody RegisterRequest request
+	) throws Exception {
 
 		String username = request.getUsername();
 		String password = request.getPassword();
@@ -71,7 +75,9 @@ public class UserController {
 
 	@Operation(summary = "로그인")
 	@PostMapping("/auth")
-	public ResponseEntity<Response<String>> login(@Validated(OrderChecks.class) @RequestBody LoginRequest request) {
+	public ResponseEntity<Response<String>> login(
+			@Validated(OrderChecks.class) @RequestBody LoginRequest request
+	) {
 
 		String username = request.getUsername();
 		String password = request.getPassword();
@@ -83,7 +89,9 @@ public class UserController {
 
 	@Operation(summary = "비밀번호 변경")
 	@PatchMapping("/password")
-	public ResponseEntity<SuccessResponse> changePassword(@Validated(OrderChecks.class) @RequestBody ChangePasswordRequest request) throws Exception {
+	public ResponseEntity<SuccessResponse> changePassword(
+			@Validated(OrderChecks.class) @RequestBody ChangePasswordRequest request
+	) throws Exception {
 
 		String password = request.getPassword();
 		String newPassword = request.getNewPassword();
@@ -95,7 +103,9 @@ public class UserController {
 
 	@Operation(summary = "유저 정보 변경")
 	@PatchMapping("/info")
-	public ResponseEntity<SuccessResponse> changeInfo(@Validated(OrderChecks.class) @RequestBody ChangeInfoRequest request) throws Exception {
+	public ResponseEntity<SuccessResponse> changeInfo(
+			@Validated(OrderChecks.class) @RequestBody ChangeInfoRequest request
+	) throws Exception {
 
 		String realName = request.getRealName();
 		int schoolGrade = request.getSchoolGrade();
