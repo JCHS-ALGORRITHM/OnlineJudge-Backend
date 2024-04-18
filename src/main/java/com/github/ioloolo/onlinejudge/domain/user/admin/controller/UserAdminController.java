@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.github.ioloolo.onlinejudge.common.payload.response.Response;
+import com.github.ioloolo.onlinejudge.common.payload.response.SuccessResponse;
 import com.github.ioloolo.onlinejudge.common.validation.OrderChecks;
 import com.github.ioloolo.onlinejudge.domain.user.admin.controller.payload.request.ChangeInfoRequest;
 import com.github.ioloolo.onlinejudge.domain.user.admin.controller.payload.request.ChangePasswordRequest;
@@ -40,19 +41,19 @@ public class UserAdminController {
 
 	@Operation(summary = "다른 유저 비밀번호 변경")
 	@PatchMapping("/password")
-	public ResponseEntity<Void> changePassword(@Validated(OrderChecks.class) @RequestBody ChangePasswordRequest request) throws Exception {
+	public ResponseEntity<SuccessResponse> changePassword(@Validated(OrderChecks.class) @RequestBody ChangePasswordRequest request) throws Exception {
 
 		String username = request.getUsername();
 		String newPassword = request.getNewPassword();
 
 		service.changePassword(username, newPassword);
 
-		return ResponseEntity.ok().build();
+		return ResponseEntity.ok(new SuccessResponse());
 	}
 
 	@Operation(summary = "다른 유저 정보 변경")
 	@PatchMapping("/info")
-	public ResponseEntity<Void> changeInfo(@Validated(OrderChecks.class) @RequestBody ChangeInfoRequest request) throws Exception {
+	public ResponseEntity<SuccessResponse> changeInfo(@Validated(OrderChecks.class) @RequestBody ChangeInfoRequest request) throws Exception {
 
 		String username = request.getUsername();
 		String realName = request.getRealName();
@@ -62,6 +63,6 @@ public class UserAdminController {
 
 		service.changeInfo(username, realName, uGrade, uClass, uId);
 
-		return ResponseEntity.ok().build();
+		return ResponseEntity.ok(new SuccessResponse());
 	}
 }

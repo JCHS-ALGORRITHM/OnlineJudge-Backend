@@ -87,7 +87,12 @@ public class User implements UserDetails {
 	}
 
 	public enum Role {
-		ROLE_USER, ROLE_ADMIN
+		ROLE_USER, ROLE_ADMIN;
+
+		public String raw() {
+
+			return this.name().substring(5);
+		}
 	}
 
 	public boolean isAdmin() {

@@ -12,13 +12,13 @@ import com.github.ioloolo.onlinejudge.common.payload.response.ErrorResponse;
 public class ErrorHandler {
 
 	@ExceptionHandler(Exception.class)
-	public ResponseEntity<?> handleException(Exception e) {
+	public ResponseEntity<ErrorResponse> handleException(Exception e) {
 
 		return ResponseEntity.internalServerError().body(new ErrorResponse(e));
 	}
 
 	@ExceptionHandler(MethodArgumentNotValidException.class)
-	public ResponseEntity<?> handleValidatedException(MethodArgumentNotValidException e) {
+	public ResponseEntity<ErrorResponse> handleValidatedException(MethodArgumentNotValidException e) {
 
 		FieldError error = e.getFieldError();
 

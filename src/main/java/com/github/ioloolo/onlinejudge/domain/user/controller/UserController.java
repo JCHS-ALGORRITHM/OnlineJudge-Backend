@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.github.ioloolo.onlinejudge.common.payload.response.Response;
+import com.github.ioloolo.onlinejudge.common.payload.response.SuccessResponse;
 import com.github.ioloolo.onlinejudge.common.validation.OrderChecks;
 import com.github.ioloolo.onlinejudge.domain.user.controller.payload.request.ChangeInfoRequest;
 import com.github.ioloolo.onlinejudge.domain.user.controller.payload.request.ChangePasswordRequest;
@@ -54,7 +55,7 @@ public class UserController {
 
 	@Operation(summary = "회원가입")
 	@PutMapping("/auth")
-	public ResponseEntity<Void> register(@Validated(OrderChecks.class) @RequestBody RegisterRequest request) throws Exception {
+	public ResponseEntity<SuccessResponse> register(@Validated(OrderChecks.class) @RequestBody RegisterRequest request) throws Exception {
 
 		String username = request.getUsername();
 		String password = request.getPassword();
@@ -65,7 +66,7 @@ public class UserController {
 
 		service.register(username, password, realName, schoolGrade, schoolClass, schoolId);
 
-		return ResponseEntity.ok().build();
+		return ResponseEntity.ok(new SuccessResponse());
 	}
 
 	@Operation(summary = "로그인")
@@ -82,19 +83,19 @@ public class UserController {
 
 	@Operation(summary = "비밀번호 변경")
 	@PatchMapping("/password")
-	public ResponseEntity<Void> changePassword(@Validated(OrderChecks.class) @RequestBody ChangePasswordRequest request) throws Exception {
+	public ResponseEntity<SuccessResponse> changePassword(@Validated(OrderChecks.class) @RequestBody ChangePasswordRequest request) throws Exception {
 
 		String password = request.getPassword();
 		String newPassword = request.getNewPassword();
 
 		service.changePassword(password, newPassword);
 
-		return ResponseEntity.ok().build();
+		return ResponseEntity.ok(new SuccessResponse());
 	}
 
 	@Operation(summary = "유저 정보 변경")
 	@PatchMapping("/info")
-	public ResponseEntity<Void> changeInfo(@Validated(OrderChecks.class) @RequestBody ChangeInfoRequest request) throws Exception {
+	public ResponseEntity<SuccessResponse> changeInfo(@Validated(OrderChecks.class) @RequestBody ChangeInfoRequest request) throws Exception {
 
 		String realName = request.getRealName();
 		int schoolGrade = request.getSchoolGrade();
@@ -103,6 +104,6 @@ public class UserController {
 
 		service.changeInfo(realName, schoolGrade, schoolClass, schoolId);
 
-		return ResponseEntity.ok().build();
+		return ResponseEntity.ok(new SuccessResponse());
 	}
 }
