@@ -56,7 +56,7 @@ public class TagAdminController {
 
 	@Operation(summary = "태그 삭제하기")
 	@DeleteMapping
-	public ResponseEntity<SuccessResponse> changeTag(
+	public ResponseEntity<SuccessResponse> deleteTag(
 			@Validated(OrderChecks.class) @RequestBody DeleteTagRequest request
 	) throws Exception {
 
