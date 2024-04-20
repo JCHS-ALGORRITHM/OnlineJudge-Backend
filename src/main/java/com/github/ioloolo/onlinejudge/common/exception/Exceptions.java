@@ -15,6 +15,11 @@ public enum Exceptions {
 	// Tag Controller
 	TAG_EXISTS("이미 존재하는 태그입니다."),
 	TAG_NOT_EXISTS("존재하지 않는 태그입니다."),
+
+	// Problem Controller
+	PROBLEM_ID_EXISTS("해당 문제 ID가 사용중입니다.."),
+	PROBLEM_NAME_EXISTS("해당 문제 이름이 사용중입니다.."),
+	PROBLEM_NOT_EXISTS("존재하지 않는 문제입니다."),
 	;
 
 	private final String message;
