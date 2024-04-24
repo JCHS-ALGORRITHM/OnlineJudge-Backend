@@ -30,8 +30,8 @@ public class ProblemController {
 
 	private final ProblemService service;
 
-	@Operation(summary = "문제 목록 가져오기")
-	@GetMapping
+	@Operation(summary = "문제 최대 페이지")
+	@GetMapping("/maxPage")
 	public ResponseEntity<Response<Integer>> getMaxProblemListPage() {
 
 		int maxPage = service.getMaxProblemListPage();
